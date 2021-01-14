@@ -1,3 +1,15 @@
+import React from 'react';
+import Main from './components/MainComponent';
+
+export default class App extends React.Component {
+  render() {
+    return (
+            <Main/>
+    );
+  }
+}
+
+/*
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import React from 'react';
@@ -24,3 +36,4 @@ export default function App() {
     </View>
   );
 }
+*/
