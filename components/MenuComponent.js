@@ -6,8 +6,9 @@ function Menu(props)
 {
     const renderMenuItem = ({item, index}) => {
         return (
-                <ListItem key={index} bottomDivider>
-                    <Avatar source={require('./images/uthappizza.png')} />
+                <ListItem key={index} bottomDivider
+                          onPress={() => props.onPress(item.id)}>
+                    <Avatar rounded source={require('./images/uthappizza.png')} />
                     <ListItem.Content>
                         <ListItem.Title>{item.name}</ListItem.Title>
                         <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
