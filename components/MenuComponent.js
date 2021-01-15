@@ -1,30 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import { DISHES } from '../shared/dishes';
 
-function Menu(props) 
-{
-    const renderMenuItem = ({item, index}) => {
-        return (
-                <ListItem key={index} bottomDivider
-                          onPress={() => props.onPress(item.id)}>
-                    <Avatar rounded source={require('./images/uthappizza.png')} />
-                    <ListItem.Content>
-                        <ListItem.Title>{item.name}</ListItem.Title>
-                        <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
-                    </ListItem.Content>   
-                </ListItem>
+class Menu extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            dishes: DISHES
+        };
+    }
+
+    //static navigationOptions = {
+    //    title: 'Menu'
+    //};
+
+    render() {
+
+        const { navigate } = this.props.navigation;
+        const renderMenuItem = ({item, index}) => {
+            return (
+                    <ListItem key={index} bottomDivider
+                        onPress={() => navigate('Dishdetail', { dishId: item.id })}>
+                        <Avatar rounded source={require('./images/uthappizza.png')} />
+                        <ListItem.Content>
+                            <ListItem.Title>{item.name}</ListItem.Title>
+                            <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
+                        </ListItem.Content>   
+                    </ListItem>
+            );
+        };
+
+        return (           
+                <FlatList
+                style={{marginTop:40}}
+                data={this.state.dishes}
+                renderItem={renderMenuItem}
+                keyExtractor={item => item.id.toString()}
+                />
         );
-    };
-
-    return (           
-            <FlatList
-            style={{marginTop:40}}
-            data={props.dishes}
-            renderItem={renderMenuItem}
-            keyExtractor={item => item.id.toString()}
-            />
-    );
+    }
 }
 
 
