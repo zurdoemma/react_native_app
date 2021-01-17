@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
-import { View, Platform } from 'react-native';
+import Home from './HomeComponent';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator   } from '@react-navigation/drawer';
 
 
 
@@ -13,7 +14,15 @@ const optionsNavigator = { headerStyle: { backgroundColor: '#512DA8' },
 headerTintColor: '#fff',
 headerTitleStyle: { color: '#fff' }};
 
-function getMenuNavigator() {
+const HomeStackNavigator = () => {
+    return (
+      <MenuNavigator.Navigator>
+        <MenuNavigator.Screen name="Home" component={Home} options={optionsNavigator} />
+      </MenuNavigator.Navigator>
+    );
+}
+
+const MenuStackNavigator = () => {
     return (
       <MenuNavigator.Navigator initialRouteName='Menu'>
         <MenuNavigator.Screen name="Menu" component={Menu} options={optionsNavigator} />
@@ -22,6 +31,22 @@ function getMenuNavigator() {
                                                                                   headerTintColor: '#fff',
                                                                                   headerTitleStyle: { color: '#fff' }}} />
       </MenuNavigator.Navigator>
+    );
+}
+
+const HomeNavigator = createDrawerNavigator();
+
+function getDrawerNavigator() {
+    return (
+        <HomeNavigator.Navigator
+            initialRouteName='Home' 
+            drawerStyle={{
+                backgroundColor: '#D1C4E9',
+            }}
+        >
+            <HomeNavigator.Screen name="Home" component={HomeStackNavigator} /> 
+            <HomeNavigator.Screen name="Menu" component={MenuStackNavigator} />   
+        </HomeNavigator.Navigator>
     );
 }
 
@@ -57,7 +82,7 @@ class Main extends Component {
   render() {
     return (
         <NavigationContainer>
-            {getMenuNavigator()}
+            {getDrawerNavigator()}
         </NavigationContainer>
     );
   }
