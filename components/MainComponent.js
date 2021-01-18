@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
 import Home from './HomeComponent';
+import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator   } from '@react-navigation/drawer';
@@ -34,6 +36,28 @@ const MenuStackNavigator = () => {
     );
 }
 
+const ContactStackNavigator = () => {
+    return (
+      <MenuNavigator.Navigator>
+        <MenuNavigator.Screen name="Contact" component={Contact} options={{ title:"Contact Us",
+                                                                                  headerStyle: { backgroundColor: '#512DA8' },
+                                                                                  headerTintColor: '#fff',
+                                                                                  headerTitleStyle: { color: '#fff' }}} />
+      </MenuNavigator.Navigator>
+    );
+}
+
+const AboutStackNavigator = () => {
+    return (
+      <MenuNavigator.Navigator>
+        <MenuNavigator.Screen name="About" component={About} options={{ title:"About Us",
+                                                                                  headerStyle: { backgroundColor: '#512DA8' },
+                                                                                  headerTintColor: '#fff',
+                                                                                  headerTitleStyle: { color: '#fff' }}} />
+      </MenuNavigator.Navigator>
+    );
+}
+
 const HomeNavigator = createDrawerNavigator();
 
 function getDrawerNavigator() {
@@ -41,11 +65,13 @@ function getDrawerNavigator() {
         <HomeNavigator.Navigator
             initialRouteName='Home' 
             drawerStyle={{
-                backgroundColor: '#D1C4E9',
+                backgroundColor: '#D1C4E9'
             }}
         >
             <HomeNavigator.Screen name="Home" component={HomeStackNavigator} /> 
-            <HomeNavigator.Screen name="Menu" component={MenuStackNavigator} />   
+            <HomeNavigator.Screen name="About" component={AboutStackNavigator}  options={{ title:"About Us"}} />
+            <HomeNavigator.Screen name="Menu" component={MenuStackNavigator} />
+            <HomeNavigator.Screen name="Contact" component={ContactStackNavigator}   options={{ title:"Contact Us"}} />   
         </HomeNavigator.Navigator>
     );
 }
