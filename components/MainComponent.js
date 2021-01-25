@@ -193,7 +193,7 @@ function getDrawerNavigator(props) {
                                                                                                         name='cutlery'
                                                                                                         type='font-awesome'            
                                                                                                         size={24}
-                                                                                                        iconStyle={{ color: tintColor }}
+                                                                                                        color={tintColor}
                                                                                                     />)}} 
             />   
         </HomeNavigator.Navigator>
