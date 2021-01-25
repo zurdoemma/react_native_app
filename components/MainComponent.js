@@ -4,6 +4,7 @@ import Dishdetail from './DishdetailComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import Reservation from './ReservationComponent';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
@@ -107,6 +108,23 @@ const AboutStackNavigator = () => {
     );
 }
 
+const ReservationStackNavigator = () => {
+    return (
+      <MenuNavigator.Navigator>
+        <MenuNavigator.Screen name="Reservation" component={Reservation} options={{ title:"Reservation",
+                                                                                  headerStyle: { backgroundColor: '#512DA8' },
+                                                                                  headerTintColor: '#fff',
+                                                                                  headerTitleStyle: { color: '#fff' },
+                                                                                  headerLeft: () => { 
+                                                                                    const navigation = useNavigation();
+                                                                                    return <Icon name="menu" size={24} 
+                                                                                                 color= 'white'
+                                                                                                 onPress={ () => {navigation.dispatch(DrawerActions.openDrawer());}}/>}}}
+        />
+      </MenuNavigator.Navigator>
+    );
+}
+
 const CustomDrawerContentComponent = (props) => (
     <DrawerContentScrollView {...props} >
       <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -167,6 +185,15 @@ function getDrawerNavigator(props) {
                                                                                                         type='font-awesome'            
                                                                                                         size={22}
                                                                                                         color={tintColor}
+                                                                                                    />)}} 
+            /> 
+            <HomeNavigator.Screen name="Reservation" component={ReservationStackNavigator}   options={{ title:"Reserve Table",
+                                                                                                drawerIcon: ({ tintColor, focused }) => (
+                                                                                                    <Icon
+                                                                                                        name='cutlery'
+                                                                                                        type='font-awesome'            
+                                                                                                        size={24}
+                                                                                                        iconStyle={{ color: tintColor }}
                                                                                                     />)}} 
             />   
         </HomeNavigator.Navigator>
