@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet, Switch, Button, Modal } from 'react-native';
-import { Input } from 'react-native-elements';
+//import { Input } from 'react-native-elements';
 import DateTimePicker from 'react-native-datepicker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-community/picker';
@@ -154,10 +154,5 @@ const styles = StyleSheet.create({
          margin: 10
      }
 });
-
-const formatDate = (date, time) => {
-    return `${date.getDate()}/${date.getMonth() +
-      1}/${date.getFullYear()} ${time.getHours()}:${time.getMinutes()}`;
-};
 
 export default Reservation;
