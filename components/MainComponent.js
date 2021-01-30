@@ -205,15 +205,6 @@ function getDrawerNavigator(props) {
                                                                                                         color={tintColor}
                                                                                                     />)}} 
             /> 
-            <HomeNavigator.Screen name="Reservation" component={ReservationStackNavigator}   options={{ title:"Reserve Table",
-                                                                                                drawerIcon: ({ tintColor, focused }) => (
-                                                                                                    <Icon
-                                                                                                        name='cutlery'
-                                                                                                        type='font-awesome'            
-                                                                                                        size={24}
-                                                                                                        color={tintColor}
-                                                                                                    />)}} 
-            />  
             <HomeNavigator.Screen name="Favorites" component={FavoritesStackNavigator}   options={{ title:"My Favorites",
                                                                                                 drawerIcon: ({ tintColor, focused }) => (
                                                                                                     <Icon
@@ -222,7 +213,16 @@ function getDrawerNavigator(props) {
                                                                                                         size={24}
                                                                                                         color={tintColor}
                                                                                                     />)}} 
-            />  
+            /> 
+            <HomeNavigator.Screen name="Reservation" component={ReservationStackNavigator}   options={{ title:"Reserve Table",
+                                                                                                drawerIcon: ({ tintColor, focused }) => (
+                                                                                                    <Icon
+                                                                                                        name='cutlery'
+                                                                                                        type='font-awesome'            
+                                                                                                        size={24}
+                                                                                                        color={tintColor}
+                                                                                                    />)}} 
+            />   
         </HomeNavigator.Navigator>
     );
 }
