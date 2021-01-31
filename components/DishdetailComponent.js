@@ -20,13 +20,6 @@ const mapDispatchToProps = dispatch => ({
     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
 });
 
-function RecognComment(moveX, moveY, dx, dy)
-{
-    if ( dx > 200 )
-        return true;
-    else
-        return false;
-}
 
 function RenderDish(props) {
 
@@ -36,6 +29,13 @@ function RenderDish(props) {
 
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
         if ( dx < -200 )
+            return true;
+        else
+            return false;
+    }
+
+    const recognComment = ({ moveX, moveY, dx, dy }) => {
+        if ( dx > 200 )
             return true;
         else
             return false;
@@ -60,7 +60,7 @@ function RenderDish(props) {
                     { cancelable: false }
                 );
             
-            if (RecognComment(gestureState.moveX, gestureState.moveY, gestureState.dx, gestureState.dy))
+            if (recognComment(gestureState))
                 props.openModal();
                 
             return true;

@@ -50,7 +50,7 @@ class Reservation extends Component {
     render() {
 
         return(
-            <Animatable.View animation="zoomInUp" duration={3000} delay={1500}>
+            <Animatable.View animation="zoomIn" duration={3000} delay={1500}>
                 <View style={styles.formRow}>
                 <Text style={styles.formLabel}>Number of Guests</Text>
                 <Picker
