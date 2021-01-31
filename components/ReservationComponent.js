@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Switch, Button, Modal } from 'react-native';
+import { Text, View, StyleSheet, Switch, Button, Modal, Alert } from 'react-native';
 //import { Input } from 'react-native-elements';
 import DateTimePicker from 'react-native-datepicker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-community/picker';
+import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
 
@@ -28,7 +29,15 @@ class Reservation extends Component {
 
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        this.toggleModal();
+        Alert.alert(
+            'Your Reservation OK?',
+            'Number Of Guests: ' + this.state.guests + '\nSmoking? ' + this.state.smoking.toString() + '\nDate and Time: ' + this.state.date,
+            [
+            {text: 'Cancel', onPress: () => this.resetForm(), style: 'cancel'},
+            {text: 'OK', onPress: () => {this.resetForm();}},
+            ],
+            { cancelable: false }
+        );
     }  
     
     resetForm() {
@@ -41,7 +50,7 @@ class Reservation extends Component {
     render() {
 
         return(
-            <ScrollView>
+            <Animatable.View animation="zoomInUp" duration={3000} delay={1500}>
                 <View style={styles.formRow}>
                 <Text style={styles.formLabel}>Number of Guests</Text>
                 <Picker
@@ -116,7 +125,7 @@ class Reservation extends Component {
                             />
                     </View>
                 </Modal>
-            </ScrollView>
+            </Animatable.View>
         );
     }
 
