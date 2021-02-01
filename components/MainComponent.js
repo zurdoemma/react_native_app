@@ -6,6 +6,7 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoriteComponent';
+import Login from './LoginComponent';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
@@ -143,6 +144,23 @@ const FavoritesStackNavigator = () => {
     );
 }
 
+const LoginStackNavigator = () => {
+    return (
+      <MenuNavigator.Navigator>
+        <MenuNavigator.Screen name="Login" component={Login} options={{ title:"Login",
+                                                                                  headerStyle: { backgroundColor: '#512DA8' },
+                                                                                  headerTintColor: '#fff',
+                                                                                  headerTitleStyle: { color: '#fff' },
+                                                                                  headerLeft: () => { 
+                                                                                    const navigation = useNavigation();
+                                                                                    return <Icon name="menu" size={24} 
+                                                                                                 color= 'white'
+                                                                                                 onPress={ () => {navigation.dispatch(DrawerActions.openDrawer());}}/>}}}
+        />
+      </MenuNavigator.Navigator>
+    );
+}
+
 const CustomDrawerContentComponent = (props) => (
     <DrawerContentScrollView {...props} >
       <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -170,6 +188,15 @@ function getDrawerNavigator(props) {
             }} 
             drawerContent={props => <CustomDrawerContentComponent {...props} />}
         >
+            <HomeNavigator.Screen name="Login" component={LoginStackNavigator} options={{drawerIcon: ({ tintColor, focused }) => (
+                                                                                                        <Icon
+                                                                                                            name='sign-in'
+                                                                                                            type='font-awesome'            
+                                                                                                            size={24}
+                                                                                                            color={tintColor}
+                                                                                                        />)}
+                                                                                    } 
+            /> 
             <HomeNavigator.Screen name="Home" component={HomeStackNavigator} options={{drawerIcon: ({ tintColor, focused }) => (
                                                                                                         <Icon
                                                                                                             name='home'
