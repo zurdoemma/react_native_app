@@ -5,6 +5,16 @@ import DateTimePicker from 'react-native-datepicker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-community/picker';
 import * as Animatable from 'react-native-animatable';
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+});
 
 class Reservation extends Component {
 
@@ -34,7 +44,7 @@ class Reservation extends Component {
             'Number Of Guests: ' + this.state.guests + '\nSmoking? ' + this.state.smoking.toString() + '\nDate and Time: ' + this.state.date,
             [
             {text: 'Cancel', onPress: () => this.resetForm(), style: 'cancel'},
-            {text: 'OK', onPress: () => {this.resetForm();}},
+            {text: 'OK', onPress: () => {this.resetForm(); this.presentLocalNotification(this.state.date);}},
             ],
             { cancelable: false }
         );
@@ -45,6 +55,29 @@ class Reservation extends Component {
         smoking: false,
         date:new Date(1598051730000),
         showModal: false});
+    }
+
+    async obtainNotificationPermission() {
+        let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            if (permission.status !== 'granted') {
+                Alert.alert('Permission not granted to show notifications');
+            }
+        }
+        return permission;
+    }   
+
+    async presentLocalNotification(date) {
+        await this.obtainNotificationPermission();
+
+        Notifications.scheduleNotificationAsync({
+            content: {
+                title: 'Your Reservation',
+                body: 'Reservation for '+ date + ' requested',
+            },
+            trigger: null,
+          }); 
     }
 
     render() {
