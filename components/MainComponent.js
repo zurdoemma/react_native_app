@@ -148,14 +148,14 @@ const LoginStackNavigator = () => {
     return (
       <MenuNavigator.Navigator>
         <MenuNavigator.Screen name="Login" component={Login} options={{ title:"Login",
-                                                                                  headerStyle: { backgroundColor: '#512DA8' },
-                                                                                  headerTintColor: '#fff',
-                                                                                  headerTitleStyle: { color: '#fff' },
-                                                                                  headerLeft: () => { 
-                                                                                    const navigation = useNavigation();
-                                                                                    return <Icon name="menu" size={24} 
-                                                                                                 color= 'white'
-                                                                                                 onPress={ () => {navigation.dispatch(DrawerActions.openDrawer());}}/>}}}
+                                                                        headerStyle: { backgroundColor: '#512DA8' },
+                                                                        headerTintColor: '#fff',
+                                                                        headerTitleStyle: { color: '#fff' },
+                                                                        headerLeft: () => { 
+                                                                        const navigation = useNavigation();
+                                                                        return <Icon name="menu" size={24} 
+                                                                                        color= 'white'
+                                                                                        onPress={ () => {navigation.dispatch(DrawerActions.openDrawer());}}/>}}}
         />
       </MenuNavigator.Navigator>
     );
