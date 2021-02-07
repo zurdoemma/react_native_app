@@ -2751,6 +2751,11 @@ expo-asset@~8.2.1:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-calendar@~8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/expo-calendar/-/expo-calendar-8.6.0.tgz#06fc8768550d94948344a593b9d184808fba5266"
+  integrity sha512-giProL2KlRAUunSFMzEybv54AAlrgagEgijmyOnZ+KOviOYEqP4wh0J5/O8sBlpx6LDh5JDwNdNM6jl+8HHZ7g==
+
 expo-constants@9.3.1:
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.3.1.tgz#1cab4896ea5e626fc7f19f49893526c94b481443"
@@ -5148,6 +5153,13 @@ react-native-iphone-x-helper@^1.3.0, react-native-iphone-x-helper@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
+
+react-native-modal-datetime-picker@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-9.1.0.tgz#a1286efa6d9c456e931805fd0687cf9e916af6ed"
+  integrity sha512-KwZEduMvfxp1BMQ2nMOckJCpR5Wiw+GIBazqtWm6zptNTL+iQyeYQeyjIubsMGWh4MkMueActSRWMvHut98h/Q==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-native-paper@^4.7.0:
   version "4.7.0"

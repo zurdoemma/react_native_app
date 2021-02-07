@@ -145,6 +145,23 @@ class RegisterTab extends Component {
 
     }
 
+    getImageFromGallery = async () => {
+        const cameraPermission = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+
+        if (cameraPermission.status === 'granted') {
+            let capturedImage = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+            });
+            if (!capturedImage.cancelled) {
+                console.log(capturedImage);
+                this.processImage(capturedImage.uri);
+            }
+        }
+
+    }
+
     processImage = async (imageUri) => {
         let processedImage = await ImageManipulator.manipulateAsync(
             imageUri, 
@@ -174,11 +191,17 @@ class RegisterTab extends Component {
                         source={{uri: this.state.imageUrl}} 
                         loadingIndicatorSource={require('./images/logo.png')}
                         style={styles.image} 
-                        />
+                    />
                     <Button
                         title="Camera"
                         onPress={this.getImageFromCamera}
-                        />
+                        containerStyle={styles.formButtonRow}
+                    />
+                    <Button
+                        title="Gallery"
+                        onPress={this.getImageFromGallery}
+                        containerStyle={styles.formButtonRow}
+                    />
                 </View>
                 <Input
                     placeholder="Username"
@@ -252,7 +275,8 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         flexDirection: 'row',
-        margin: 10
+        margin: 10,
+        justifyContent: 'center'
     },
     image: {
       margin: 5,
@@ -268,6 +292,9 @@ const styles = StyleSheet.create({
     },
     formButton: {
         margin: 30
+    },
+    formButtonRow: {
+        marginLeft: 20
     }
 });
 
